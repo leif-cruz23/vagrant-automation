@@ -21,7 +21,8 @@ Vagrant.configure("2") do |config|
 		h.memory = 2048 ## Sets the maximum Memory the VM will use
 		h.cpus = 2 ## Sets the maximum CPU cores the VM will use
 	end
-    cos7.vm.box = "C:/Users/Leif/Documents/TestDirectory/CentOS7.box" ## Specifies the Vagrant Package in the cloud
+    	cos7.vm.box = "C:/Users/Leif/Documents/TestDirectory/CentOS7.box" ## Specifies the directory of the package (Local Directory)
+##	cos7.vm.box = "centos/7" ## Specifies the package in the Vagrant Cloud Repository (Cloud)
 	cos7.vm.hostname = "CentOS7" ## Hostname the machine should have
   end
   
