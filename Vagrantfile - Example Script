@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+# - Vagrant
+
+# Multiple Virtual Machines (VMs) can be executed in one single script. In this
+# script, Cent OS 7 will run first, followed by a different Cent OS 7 build, and then
+# Bento version of Ubuntu.
+
+# Comments in the code were based off the documentation provided by www.vagrantup.com
+# - Leif Euriche J. Cruz
+
+Vagrant.configure("2") do |config|
+  config.vm.define "CentOS7" do |cos7| ## Sets the name to be used in VMWare
+	cos7.vm.provider "vmware_workstation" do |h| ## Configures to set specific settings to a certain provider
+		h.gui = true ## Shows the VMWare Interface
+		h.memory = 2048 ## Sets the maximum Memory the VM will use
+		h.cpus = 2 ## Sets the maximum CPU cores the VM will use
+	end
+    cos7.vm.box = "C:/Users/Leif/Documents/TestDirectory/CentOS7.box" ## Specifies the Vagrant Package in the cloud
+	cos7.vm.hostname = "CentOS7" ## Hostname the machine should have
+  end
+  
+  config.vm.define "Generic" do |c|
+	c.vm.provider "vmware_desktop" do |f|
+		f.gui = true
+	end
+    c.vm.box = "generic/centos7"
+	c.vm.hostname = "Generic"
+  end
+  
+  config.vm.define "Bento" do |c|
+	c.vm.provider "vmware_desktop" do |f|
+		f.gui = true
+	end
+    c.vm.box = "bento/ubuntu-16.04"
+	c.vm.hostname = "Bento"
+  end
+end
